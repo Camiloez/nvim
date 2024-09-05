@@ -13,12 +13,12 @@ return {
     "hrsh7th/nvim-cmp",
     config = function()
       local cmp = require("cmp")
-      --require("luasnip.loaders.from_vscode").lazy_load()
+      require("luasnip.loaders.from_vscode").lazy_load()
 
       cmp.setup({
         snippet = {
           expand = function(args)
-            --require("luasnip").lsp_expand(args.body)
+            require("luasnip").lsp_expand(args.body)
           end,
         },
         window = {
