@@ -13,7 +13,6 @@ return {
 					"lua_ls",
 					"pyright",
 					"ruff_lsp",
-          "debugpy",
 				},
 			})
 		end,
@@ -27,7 +26,7 @@ return {
 				capabilities = capabilities,
 				filetypes = { "lua" },
 			})
-			lspconfig.tsserver.setup({ capabilities = capabilities })
+			lspconfig.ts_ls.setup({ capabilities = capabilities })
 			lspconfig.html.setup({ capabilities = capabilities })
 
 			lspconfig.pyright.setup({
