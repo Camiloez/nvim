@@ -37,15 +37,14 @@ return {
 				},
 			})
 
-			vim.keymap.set("n", "<leader>cc", function()
+			vim.keymap.set("n", "<leader>ccq", function()
 				local input = vim.fn.input("Quick Chat: ")
 				if input ~= "" then
 					require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
 				end
 			end)
 
-			vim.keymap.set("n", "<leader>cch", function()
-				print("hello")
+			vim.keymap.set("n", "<leader>cca", function()
 				local actions = require("CopilotChat.actions")
 				require("CopilotChat.integrations.telescope").pick(actions.help_actions())
 			end)

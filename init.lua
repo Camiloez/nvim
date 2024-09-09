@@ -20,11 +20,7 @@ require("vim-options")
 require("lazy").setup("plugins")
 
 
-
-
 vim.opt.number = true
 vim.opt.relativenumber = true
-
-
 
 
