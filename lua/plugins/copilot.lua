@@ -19,8 +19,17 @@ return {
 				row = 1,
 			},
 			prompts = {
-				Append = {
-					prompt = "hello from append",
+				Summarize = {
+					prompt = "Please summarize the following text.",
+				},
+				Documentation = {
+					prompt = "Please provide documentation for the following code.",
+				},
+				MyTests = {
+					prompt = "Please generate unit tests for this code using pytest.",
+				},
+				MyReview = {
+					prompt = "Please review the following code and provide suggestions for improvement.",
 				},
 			},
 		})
