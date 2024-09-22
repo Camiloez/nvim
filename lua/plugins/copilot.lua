@@ -58,5 +58,25 @@ return {
 			":CopilotChatFix<CR>",
 			mode = { "v" },
 		},
+		{
+			"<Leader>ccr",
+			":CopilotChatMyReview<CR>",
+			mode = { "v", "n" },
+		},
+		{
+			"<Leader>ccs",
+			":CopilotChatSummarize<CR>",
+			mode = { "v", "n" },
+		},
+    {
+      "<Leader>ccd",
+      ":CopilotChatDocumentation<CR>",
+      mode = { "v", "n" },
+    },
+    {
+      "<Leader>cct",
+      ":CopilotChatMyTests<CR>",
+      mode = { "v", "n" },
+    },
 	},
 }
