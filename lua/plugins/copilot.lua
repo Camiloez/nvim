@@ -32,5 +32,22 @@ return {
 			mode = { "v" },
 			desc = "Copilot Chat Selection",
 		},
+		{
+			"<Leader>cch",
+			":CopilotChatToggle<CR>",
+			mode = { "n" },
+			desc = "Toggle Copilot Chat",
+		},
+		{
+			"<Leader>cce",
+			":CopilotChatExplain<CR>",
+			mode = { "v" },
+			desc = "Copilot explain",
+		},
+		{
+			"<Leader>ccf",
+			":CopilotChatFix<CR>",
+			mode = { "v" },
+		},
 	},
 }
