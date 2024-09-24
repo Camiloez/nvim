@@ -1,6 +1,9 @@
 {
     "diagnostics.globals": [
         "vim",
-        "name"
+        "name",
+        "CopilotChat",
+        "let",
+        "g"
     ]
 }

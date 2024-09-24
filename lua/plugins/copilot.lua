@@ -1,82 +1,47 @@
 return {
-	"CopilotC-Nvim/CopilotChat.nvim",
-	branch = "canary",
-	dependencies = {
-		{ "github/copilot.vim" }, -- or github/copilot.vim
-		{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
-	},
-	build = "make tiktoken",
-	opts = {
-		debug = true,
-	},
+	"zbirenbaum/copilot.lua",
+	cmd = "Copilot",
 	config = function()
-		require("CopilotChat").setup({
-			window = {
-				layout = "float",
-				relative = "cursor",
-				width = 1,
-				height = 0.4,
-				row = 1,
-			},
-			prompts = {
-				Summarize = {
-					prompt = "Please summarize the following text.",
-				},
-				Documentation = {
-					prompt = "Please provide documentation for the following code.",
-				},
-				MyTests = {
-					prompt = "Please generate unit tests for this code using pytest.",
-				},
-				MyReview = {
-					prompt = "Please review the following code and provide suggestions for improvement.",
-				},
+		-- Setup Copilot with the following configuration
+
+		local copilot = require("copilot")
+
+		copilot.setup({
+			suggestion = {
+				enabled = true,
+				auto_trigger = false,
+				keymap = {},
 			},
 		})
+
+		vim.keymap.set("i", "<C-t>", function()
+			require("copilot.suggestion").next()
+		end, { silent = true })
+
+		vim.keymap.set("i", "<Tab>", function()
+			if require("copilot.suggestion").is_visible() then
+				require("copilot.suggestion").accept()
+			else
+				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+			end
+		end, {
+			silent = true,
+		})
+
+		vim.keymap.set("i", "<Right>", function()
+			if require("copilot.suggestion").is_visible() then
+				require("copilot.suggestion").accept_line()
+			else
+				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Right>", true, false, true), "n", false)
+			end
+		end)
+
+		vim.keymap.set("i", "<S-w>", function()
+			if require("copilot.suggestion").is_visible() then
+				require("copilot.suggestion").accept_word()
+			else
+				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-w>", true, false, true), "n", false)
+			end
+		end)
 	end,
-	keys = {
-		{
-			"<Leader>cch",
-			":'<,'>CopilotChat<CR>",
-			mode = { "v" },
-			desc = "Copilot Chat Selection",
-		},
-		{
-			"<Leader>cch",
-			":CopilotChatToggle<CR>",
-			mode = { "n" },
-			desc = "Toggle Copilot Chat",
-		},
-		{
-			"<Leader>cce",
-			":CopilotChatExplain<CR>",
-			mode = { "v" },
-			desc = "Copilot explain",
-		},
-		{
-			"<Leader>ccf",
-			":CopilotChatFix<CR>",
-			mode = { "v" },
-		},
-		{
-			"<Leader>ccr",
-			":CopilotChatMyReview<CR>",
-			mode = { "v", "n" },
-		},
-		{
-			"<Leader>ccs",
-			":CopilotChatSummarize<CR>",
-			mode = { "v", "n" },
-		},
-    {
-      "<Leader>ccd",
-      ":CopilotChatDocumentation<CR>",
-      mode = { "v", "n" },
-    },
-    {
-      "<Leader>cct",
-      ":CopilotChatMyTests<CR>",
-      mode = { "v", "n" },
-    },
-	},
 }
