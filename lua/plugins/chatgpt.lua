@@ -1,0 +1,40 @@
+return {
+	"jackMort/ChatGPT.nvim",
+	event = "VeryLazy",
+	keys = {
+		{ "<leader>ph", "<cmd>ChatGPT<cr>", mode = { "n", "v" }, desc = "ChatGPT" },
+		{ "<leader>pe", "<cmd>ChatGPTEditWithInstruction<cr>", mode = { "n", "v" }, desc = "Edit with instruction" },
+		{ "<leader>pg", "<cmd>ChatGPTRun grammar_correction<cr>", mode = { "n", "v" }, desc = "Grammar Correction" },
+		{ "<leader>pt", "<cmd>ChatGPTRun translate<cr>", mode = { "n", "v" }, desc = "Translate" },
+		{ "<leader>pk", "<cmd>ChatGPTRun keywords<cr>", mode = { "n", "v" }, desc = "Keywords" },
+		{ "<leader>pd", "<cmd>ChatGPTRun docstring<cr>", mode = { "n", "v" }, desc = "Docstring" },
+		{ "<leader>pa", "<cmd>ChatGPTRun add_tests<cr>", mode = { "n", "v" }, desc = "Add Tests" },
+		{ "<leader>po", "<cmd>ChatGPTRun optimize_code<cr>", mode = { "n", "v" }, desc = "Optimize Code" },
+		{ "<leader>ps", "<cmd>ChatGPTRun summarize<cr>", mode = { "n", "v" }, desc = "Summarize" },
+		{ "<leader>pf", "<cmd>ChatGPTRun fix_bugs<cr>", mode = { "n", "v" }, desc = "Fix Bugs" },
+		{ "<leader>px", "<cmd>ChatGPTRun explain_code<cr>", mode = { "n", "v" }, desc = "Explain Code" },
+		{ "<leader>pr", "<cmd>ChatGPTRun roxygen_edit<cr>", mode = { "n", "v" }, desc = "Roxygen Edit" },
+		{
+			"<leader>pl",
+			"<cmd>ChatGPTRun code_readability_analysis<cr>",
+			mode = { "n", "v" },
+			desc = "Code Readability Analysis",
+		},
+	},
+	opts = {
+		openai_params = {
+			model = "gpt-4o",
+			frequency_penalty = 0,
+			presence_penalty = 0,
+			max_tokens = 2000,
+			temperature = 0,
+			top_p = 1,
+			n = 1,
+		},
+	},
+	dependencies = {
+		"MunifTanjim/nui.nvim",
+		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope.nvim",
+	},
+}
