@@ -27,7 +27,6 @@ vim.keymap.set("n", "<Esc>", "<cmd> noh <CR>")
 vim.keymap.set("n", "<C-a>", "<Esc>ggVG", { noremap = true, silent = true })
 vim.keymap.set("i", "<C-a>", "<Esc>ggVG", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<S-Tab>", "<<", { noremap = true, silent = true })
 vim.keymap.set("i", "<S-Tab>", "<C-d>", { noremap = true, silent = true })
 
 
@@ -36,4 +35,11 @@ vim.opt.relativenumber = true
 
 vim.keymap.set('i', '<fn><bs>', '<C-w>')
 vim.api.nvim_set_keymap('i', '<C-d>', '<Del>', { noremap = true, silent = true })
+
+
+
+vim.keymap.set("n", "<C-UP>", "<cmd>resize -2<cr>", { desc = "Increase Window Height" })
+vim.keymap.set("n", "<C-DOWN>", "<cmd>resize +2<cr>", { desc = "Decrease Window Height" })
+vim.keymap.set("n", "<C-RIGHT>", ":vertical resize +2<cr>", { desc = "Increase Window Width" })
+vim.keymap.set("n", "<C-LEFT>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 
