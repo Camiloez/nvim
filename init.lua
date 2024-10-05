@@ -43,3 +43,9 @@ vim.keymap.set("n", "<C-DOWN>", "<cmd>resize +2<cr>", { desc = "Decrease Window 
 vim.keymap.set("n", "<C-RIGHT>", ":vertical resize +2<cr>", { desc = "Increase Window Width" })
 vim.keymap.set("n", "<C-LEFT>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 
+
+-- Indent text to the right using <Tab>
+vim.keymap.set("v", "<Tab>", ">gv", { silent = true })
+
+-- Indent text to the left using <S-Tab>
+vim.keymap.set("v", "<S-Tab>", "<gv", { silent = true })
