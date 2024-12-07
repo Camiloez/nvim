@@ -14,6 +14,7 @@ return {
 			},
 		})
 
+
 		vim.keymap.set("i", "<C-t>", function()
 			require("copilot.suggestion").next()
 		end, { silent = true })
@@ -43,5 +44,6 @@ return {
 				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-w>", true, false, true), "n", false)
 			end
 		end)
+
 	end,
 }
