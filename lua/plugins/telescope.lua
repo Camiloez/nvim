@@ -65,7 +65,7 @@ return {
         desc = "Open file browser",
       },
       { "<leader>fa", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<cr>", desc = "Find all" },
-      { "<leader>fw", live_multigrep, desc = "Live grep" },
+      { "<leader>fg", live_multigrep, desc = "Live grep" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
       { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help page" },
       { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Find oldfiles" },

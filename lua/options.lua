@@ -30,7 +30,7 @@ o.wrap = false
 opt.ignorecase = true --ignore case when searching
 opt.smartcase = true -- assume sensitive when using mixed
 
-opt.cursorline = true
+opt.cursorline = false
 
 -- colors
 opt.termguicolors = true
