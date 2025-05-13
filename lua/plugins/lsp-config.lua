@@ -23,8 +23,6 @@ return {
 			end
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			local util = require("lspconfig/util")
 			local lspconfig = require("lspconfig")
 
 			lspconfig.lua_ls.setup({})
@@ -41,27 +39,26 @@ return {
 			vim.keymap.set("n", "<CR>", "o<Esc>")
 			vim.keymap.set("n", "<S-CR>", "O<Esc>")
 			vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, {})
-
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+			vim.keymap.set({ "n", "i" }, "<leader>rn", vim.lsp.buf.rename, {})
+			vim.keymap.set({ "n", "i" }, "gr", vim.lsp.buf.references, {})
 
 			--- Go
-      lspconfig.gopls.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        cmd = {"gopls"},
-        filetypes = {"go", "gomod", "gowork", "gotmpl"},
-        root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-        settings = {
-          gopls = {
-            completeUnimported = true,
-            usePlaceholders = true,
-            analyses = {
-              unusedparams = true,
-            }
-          }
-        }
-      }
-
+			lspconfig.gopls.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				cmd = { "gopls" },
+				filetypes = { "go", "gomod", "gowork", "gotmpl" },
+				settings = {
+					gopls = {
+						completeUnimported = true,
+						usePlaceholders = true,
+						analyses = {
+							unusedparams = true,
+						},
+					},
+				},
+			})
 		end,
 	},
 }
