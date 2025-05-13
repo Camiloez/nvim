@@ -16,6 +16,10 @@ local keymaps = {
     -- Tabs
     ["<leader>to"] = { "<cmd>tabnew<CR>", "open new tab" },
     ["<leader>tx"] = { "<cmd>tabclose<CR>", "close current tab" },
+  },
+   v = {
+    ["J"] = { ":m '>+1<CR>gv=gv", "Move selected text one line down" },
+    ["K"] = { ":m '<-2<CR>gv=gv", "Move selected text one line up" },
   }
 }
 

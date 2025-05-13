@@ -3,7 +3,6 @@ return {
   opts = {
     ensure_installed = {
       "black",
-      "copilot-language-server",
       "debugpy",
       "flake8",
       "gopls",
@@ -13,10 +12,8 @@ return {
       "pyright",
       "python-lsp-server",
       "ruff",
-      "sqls",
       "stylua",
       "terraform-ls",
-      "texlab",
     },
     ui = {
       border = require("utils").border "CmpBorder",
