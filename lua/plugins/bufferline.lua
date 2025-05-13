@@ -5,7 +5,7 @@ return {
     local bl = require "bufferline"
     bl.setup()
 
-    vim.keymap.set("n", "<leader>x", ":bp<bar>sp<bar>bn<bar>bd<cr>", { desc = "Close buffer" })
+    vim.keymap.set("n", "<leader>x", ":bp<bar>sp<bar>bn<bar>bd<CR>", { desc = "Close buffer" })
     vim.keymap.set("n", "<Tab>", function()
       vim.cmd "BufferLineCycleNext"
     end, { desc = "Go to next buffer" })

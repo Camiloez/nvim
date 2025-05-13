@@ -11,7 +11,7 @@ local keymaps = {
     -- Splits
     ["<leader>nh"] = { ":nohl<CR>", "Clear search highlights" },
     ["<leader>sv"] = { "<C-w>v", "split window vertically" },
-    ["<leader>sh"] = { "<C-w>s", "split horizontally" },
+    ["<leader>ss"] = { "<C-w>s", "split horizontally" },
     ["<leader>sx"] = { "<cmd>close<CR>", "close current split" },
     -- Tabs
     ["<leader>to"] = { "<cmd>tabnew<CR>", "open new tab" },
