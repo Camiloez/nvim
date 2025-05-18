@@ -40,7 +40,7 @@ return {
 			vim.keymap.set("n", "<S-CR>", "O<Esc>")
 			vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, {})
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set({ "n", "i" }, "<leader>rn", vim.lsp.buf.rename, {})
+			vim.keymap.set({ "n" }, "<leader>rn", vim.lsp.buf.rename, {})
 			vim.keymap.set({ "n", "i" }, "gr", vim.lsp.buf.references, {})
 
 			--- Go

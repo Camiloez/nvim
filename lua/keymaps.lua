@@ -22,6 +22,8 @@ local keymaps = {
     ["K"] = { ":m '<-2<CR>gv=gv", "Move selected text one line up" },
   }
 }
+  
+  
 
 for mode, mappings in pairs(keymaps) do
   for key, mapping in pairs(mappings) do
