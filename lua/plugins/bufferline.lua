@@ -12,10 +12,10 @@ return {
 
 		vim.keymap.set("n", "<leader>x", ":bp<bar>sp<bar>bn<bar>bd<CR>", { desc = "Close buffer" })
 		vim.keymap.set("n", "<Tab>", function()
-			vim.cmd("BufferLineCycleNext")
+			vim.cmd("BufferNext")
 		end, { desc = "Go to next buffer" })
 		vim.keymap.set("n", "<S-Tab>", function()
-			vim.cmd("BufferLineCyclePrev")
+			vim.cmd("BufferPrevious")
 		end, { desc = "Go to previous buffer" })
 
 		for i = 1, 8 do

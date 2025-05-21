@@ -55,6 +55,9 @@ return {
 						usePlaceholders = true,
 						analyses = {
 							unusedparams = true,
+              shadow = true,
+              nilness = true,
+              unusedwrite = true,
 						},
 					},
 				},
