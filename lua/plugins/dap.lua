@@ -79,7 +79,7 @@ return {
 			local dp = require("dap-go")
 			dp.setup()
 
-			vim.keymap.set({ "n", "i" }, "<leader>dt", function()
+			vim.keymap.set({ "n"}, "<leader>dt", function()
 				require("dap-go").debug_test()
 			end, { desc = "Run go test" })
 		end,
