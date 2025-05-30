@@ -49,3 +49,9 @@ vim.keymap.set("v", "<Tab>", ">gv", { silent = true })
 
 -- Indent text to the left using <S-Tab>
 vim.keymap.set("v", "<S-Tab>", "<gv", { silent = true })
+
+
+-- Normal mode
+vim.keymap.set("n", "↑", ":m .-2<CR>==", { desc = "Option+Up", silent = true })
+vim.keymap.set("n", "↓", ":m .+1<CR>==", { desc = "Option+Down", silent = true })
+

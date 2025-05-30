@@ -80,6 +80,27 @@ return {
 				},
 			})
 
+			--- Emmet
+			require("lspconfig").emmet_ls.setup({
+				filetypes = {
+					"html",
+					"css",
+					"javascript",
+					"javascriptreact",
+					"typescriptreact",
+					"svelte",
+					"vue",
+					"xml",
+				},
+				init_options = {
+					html = {
+						options = {
+							["bem.enabled"] = true,
+						},
+					},
+				},
+			})
+
 			--- Python
 			local get_path = function(package)
 				local path = lspconfig.util.path
@@ -205,3 +226,4 @@ return {
 		end,
 	},
 }
+
