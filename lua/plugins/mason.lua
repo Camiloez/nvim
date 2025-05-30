@@ -14,6 +14,13 @@ return {
       "ruff",
       "stylua",
       "terraform-ls",
+      "css-lsp",
+      "shellcheck",
+      "shfmt",
+      "tailwindcss-language-server",
+      "typescript-language-server",
+      "shfmt",
+      "luacheck"
     },
     ui = {
       border = require("utils").border "CmpBorder",
