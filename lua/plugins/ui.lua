@@ -20,6 +20,11 @@ return {
         inc_rename = false,
         lsp_doc_border = true,
       },
+      views = {
+        notify = {
+          timeout = 5000,
+        }
+      }
     },
   },
 }
