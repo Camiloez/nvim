@@ -80,6 +80,56 @@ return {
 				},
 			})
 
+			-- Typescript react native to ignore bad imports
+
+			lspconfig.vtsls.setup({
+				capabilities = capabilities,
+				filetypes = {
+					"typescript",
+					"typescriptreact",
+					"typescript.tsx",
+					"javascript",
+					"javascriptreact",
+					"javascript.jsx",
+				},
+				root_dir = lspconfig.util.root_pattern("tsconfig.json", "package.json", "jsconfig.json", ".git"),
+				settings = {
+					typescript = {
+						inlayHints = {
+							parameterNames = { enabled = "all" },
+							parameterTypes = { enabled = true },
+							variableTypes = { enabled = true },
+							propertyDeclarationTypes = { enabled = true },
+							functionLikeReturnTypes = { enabled = true },
+							enumMemberValues = { enabled = true },
+						},
+						watchOptions = {
+							watchFile = "useFsEvents",
+							excludeDirectories = {
+								"**/node_modules",
+								"**/android",
+								"**/ios",
+								"**/vendor",
+								"**/build",
+							},
+						},
+					},
+					javascript = {
+						inlayHints = {
+							parameterNames = { enabled = "all" },
+							parameterTypes = { enabled = true },
+							variableTypes = { enabled = true },
+							propertyDeclarationTypes = { enabled = true },
+							functionLikeReturnTypes = { enabled = true },
+							enumMemberValues = { enabled = true },
+						},
+					},
+				},
+				on_attach = function(client, bufnr)
+					-- Optional: filter noisy diagnostics
+				end,
+			})
+
 			--- Emmet
 			require("lspconfig").emmet_ls.setup({
 				filetypes = {
@@ -226,4 +276,3 @@ return {
 		end,
 	},
 }
-
