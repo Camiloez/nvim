@@ -11,14 +11,20 @@ return {
 			config = function(_, opts)
 				require("luasnip").config.set_config(opts)
 				-- vscode format
-				require("luasnip.loaders.from_vscode").lazy_load()
+				require("luasnip.loaders.from_vscode").lazy_load({
+					include = { "typescriptreact" },
+				})
 				require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.g.vscode_snippets_path or "" })
 				-- snipmate format
 				require("luasnip.loaders.from_snipmate").load()
 				require("luasnip.loaders.from_snipmate").lazy_load({ paths = vim.g.snipmate_snippets_path or "" })
 				-- lua format
-				require("luasnip.loaders.from_lua").load()
-				require("luasnip.loaders.from_lua").lazy_load({ paths = vim.g.lua_snippets_path or "" })
+				require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/snippets" })
+
+				-- -- ✅ Add this line to extend TS snippets to JS React files
+				require("luasnip").filetype_extend("javascript", { "typescriptreact" })
+				require("luasnip").filetype_extend("javascript", { "javascriptreact" })
+
 				vim.api.nvim_create_autocmd("InsertLeave", {
 					callback = function()
 						if
@@ -143,7 +149,6 @@ return {
 						fallback()
 					end
 				end, { "i", "s" }),
-
 				["<S-Tab>"] = cmp.mapping(function(fallback)
 					local luasnip = require("luasnip")
 					if luasnip.jumpable(-1) then
@@ -155,14 +160,35 @@ return {
 					end
 				end, { "i", "s" }),
 			},
-			sources = {
-				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
-				{ name = "buffer" },
-				{ name = "nvim_lua" },
-				{ name = "path" },
-				{ name = "pandoc_references" },
-				{ name = "copilot" },
+			sources = cmp.config.sources({
+				{ name = "nvim_lsp", priority = 1000 },
+				{ name = "buffer", priority = 700 },
+				{ name = "nvim_lua", priority = 600 },
+				{ name = "path", priority = 500 },
+				{ name = "luasnip", priority = 400 },
+				{ name = "pandoc_references", priority = 300 },
+				{ name = "copilot", priority = 200 },
+			}),
+			sorting = {
+				priority_weight = 2,
+				comparators = {
+					cmp.config.compare.offset,
+					cmp.config.compare.exact,
+					cmp.config.compare.score,
+
+					-- Prefer lower kind (Variable < Snippet)
+					function(entry1, entry2)
+						local kind1 = entry1:get_kind()
+						local kind2 = entry2:get_kind()
+						if kind1 ~= kind2 then
+							return kind1 < kind2
+						end
+					end,
+
+					cmp.config.compare.sort_text,
+					cmp.config.compare.length,
+					cmp.config.compare.order,
+				},
 			},
 		}
 		return options
