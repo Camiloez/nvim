@@ -7,8 +7,8 @@ local keymaps = {
 	},
 	n = {
 		["<Esc>"] = { "<cmd> noh <CR>", "Clear highlights" },
-		["<C-UP>"] = { "<cmd>resize -2<cr>", "Increase window height" },
-		["<C-DOWN>"] = { "<cmd>resize +2<cr>", "Increase window height" },
+		["<C-DOWN>"] = { "<cmd>resize -2<cr>", "Increase window height" },
+		["<C-UP>"] = { "<cmd>resize +2<cr>", "Increase window height" },
 		-- Splits
 		["<leader>nh"] = { ":nohl<CR>", "Clear search highlights" },
 		["<leader>sv"] = { "<C-w>v", "split window vertically" },
