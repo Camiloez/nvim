@@ -1,17 +1,13 @@
 return {
-	"olexsmir/gopher.nvim",
-	ft = "go",
-	build = function()
-		vim.cmd.GoInstallDeps()
-	end,
-	opts = {},
-	keys = {
-		{
-			"<leader>gj",
-			function()
-				vim.cmd("silent GoTagAdd json")
-			end,
-			desc = "Add JSON tags to Go struct",
-		},
-	},
+  "olexsmir/gopher.nvim",
+  ft = "go",
+  build = function()
+    vim.cmd.GoInstallDeps()
+  end,
+  opts = {},
+  config = function()
+    vim.cmd([[
+      xnoremap <silent> <leader>gj :<C-u>GoTagAdd json<CR>
+    ]])
+  end,
 }
