@@ -17,6 +17,7 @@ return {
 				svelte = {},
 				vue = {},
 				xml = {},
+        python = {},
 			},
 		})
 	end,

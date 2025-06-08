@@ -141,6 +141,7 @@ return {
 					"svelte",
 					"vue",
 					"xml",
+					"python",
 				},
 				init_options = {
 					html = {
