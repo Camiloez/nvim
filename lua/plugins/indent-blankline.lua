@@ -3,14 +3,32 @@ return {
 	main = "ibl",
 	opts = {
 		indent = {
-			char = "┆", -- softer vertical line
-			highlight = "IblIndent",
+			char = "│",
+			tab_char = "│",
+			smart_indent_cap = true,
+			priority = 1,
+		},
+		scope = {
+			enabled = true,
+			show_start = false,
+			show_end = false,
+		},
+		exclude = {
+			filetypes = {
+				"help",
+				"terminal",
+				"lazy",
+				"lspinfo",
+				"TelescopePrompt",
+				"TelescopeResults",
+				"",
+			},
+			buftypes = {
+				"terminal",
+				"nofile",
+				"quickfix",
+				"prompt",
+			},
 		},
 	},
-	config = function(_, opts)
-		require("ibl").setup(opts)
-
-		-- Set custom dimmed highlight for indent guides
-		vim.api.nvim_set_hl(0, "IblIndent", { fg = "#3a3a3a", nocombine = true })
-	end,
 }
