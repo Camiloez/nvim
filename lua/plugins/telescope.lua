@@ -62,6 +62,11 @@ return {
 				"<cmd>Telescope find_files<cr>",
 				desc = "Find files",
 			},
+      {
+        "<leader>ft",
+        "<cmd>TodoTelescope<cr>",
+        desc = "Find todos",
+      },
 			{
 				"<leader>fd",
 				"<cmd>Telescope file_browser hidden=true respect_gitignore=false<cr>",
