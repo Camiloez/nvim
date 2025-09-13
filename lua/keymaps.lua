@@ -129,7 +129,7 @@ end, { desc = "Convert bullet to a task or insert new task bullet" })
 
 vim.keymap.set("n", "µ", function()
   local label_done = "done:"
-  local timestamp = os.date("%d%m%y-%H:%M")
+  local timestamp = os.date("%d-%m-%y %H:%M")
 
   local api = vim.api
   local buf = api.nvim_get_current_buf()
