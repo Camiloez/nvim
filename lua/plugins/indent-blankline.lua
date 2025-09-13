@@ -21,6 +21,7 @@ return {
 				"lspinfo",
 				"TelescopePrompt",
 				"TelescopeResults",
+        "dashboard",
 				"",
 			},
 			buftypes = {
