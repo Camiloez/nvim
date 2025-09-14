@@ -52,6 +52,9 @@ vim.keymap.set("v", "<S-Tab>", "<gv", { silent = true })
 vim.keymap.set("n", "↑", ":m .-2<CR>==", { desc = "Option+Up", silent = true })
 vim.keymap.set("n", "↓", ":m .+1<CR>==", { desc = "Option+Down", silent = true })
 
+-- Map opt + j to move down cursor one line
+vim.keymap.set("i", "<A-CR>", "<C-o>j", { noremap = true, silent = true })
+
 vim.keymap.set("n", "<leader>tt", function()
 	require("telescope.builtin").grep_string(require("telescope.themes").get_ivy({
 		prompt_title = "Incomplete Tasks",
