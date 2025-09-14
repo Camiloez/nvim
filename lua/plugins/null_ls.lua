@@ -12,15 +12,7 @@ return {
 		if vim.g.pylsp then
 			table.insert(sources, null_ls.builtins.formatting.black.with({ filetypes = { "python" } }))
 			table.insert(sources, null_ls.builtins.formatting.isort.with({ filetypes = { "python" } }))
-			table.insert(
-				sources,
-				null_ls.builtins.diagnostics.mypy.with({
-					filetypes = { "python" },
-					-- Use poetry for mypy to ensure venv/flask is found
-					command = "poetry",
-					args = { "run", "mypy", "--show-column-numbers", "$FILENAME" },
-				})
-			)
+			table.insert(sources, null_ls.builtins.diagnostics.mypy.with({ filetypes = { "python" } }))
 		end
 
 		-- Always register go formatters, but restrict to go files
