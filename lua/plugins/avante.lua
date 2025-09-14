@@ -17,6 +17,9 @@ return {
 					top_p = 1,
 					n = 1,
 				},
+				keymap = {
+					open = "", -- disables Option+Enter
+				},
 			},
 		},
 	},
@@ -30,11 +33,9 @@ return {
 		"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 		"zbirenbaum/copilot.lua", -- for providers='copilot'
 		{
-			-- support for image pasting
 			"HakonHarnes/img-clip.nvim",
 			event = "VeryLazy",
 			opts = {
-				-- recommended settings
 				default = {
 					embed_image_as_base64 = false,
 					prompt_for_file_name = false,
@@ -47,7 +48,6 @@ return {
 			},
 		},
 		{
-			-- Make sure to set this up properly if you have lazy=true
 			"MeanderingProgrammer/render-markdown.nvim",
 			opts = {
 				file_types = { "markdown", "Avante" },
@@ -57,9 +57,12 @@ return {
 	},
 	config = function(_, opts)
 		require("img-clip").setup()
-		require("copilot").setup()
+		require("copilot").setup(opts.providers.copilot)
 		require("render-markdown").setup()
 		require("avante_lib").load(opts)
 		require("avante").setup(opts)
+
+		-- Disable Option+Enter in insert mode entirely
+		vim.keymap.set("i", "<A-CR>", function() end, { noremap = true, silent = true })
 	end,
 }
