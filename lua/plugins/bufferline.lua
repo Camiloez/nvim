@@ -1,6 +1,6 @@
 return {
 	"akinsho/bufferline.nvim",
-  event = "VeryLazy",
+	event = "VeryLazy",
 	dependencies = "nvim-tree/nvim-web-devicons",
 	config = function()
 		local bl = require("bufferline")
@@ -21,11 +21,12 @@ return {
 
 		for i = 1, 8 do
 			vim.keymap.set("n", "<leader>" .. i, function()
-				bl.go_to(i, true)
+				require("bufferline.api").goto_buffer(i, true)
 			end, { desc = "Go to buffer " .. i })
 		end
+
 		vim.keymap.set("n", "<leader>9", function()
-			bl.go_to(-1, true)
+			require("bufferline.api").goto_buffer(-1, true)
 		end, { desc = "Go to last buffer" })
 	end,
 }
