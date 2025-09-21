@@ -32,6 +32,9 @@ for mode, mappings in pairs(keymaps) do
 	end
 end
 
+
+vim.keymap.set("n", "<C-Left>",  ":vertical resize -2<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-a>", "<Esc>ggVG", { noremap = true, silent = true })
 vim.keymap.set("i", "<C-a>", "<Esc>ggVG", { noremap = true, silent = true })
 
