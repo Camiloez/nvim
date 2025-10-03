@@ -87,23 +87,6 @@ return {
 			},
 			"jc-doyle/cmp-pandoc-references",
 			-- completion for debug mode
-			{
-				"rcarriga/cmp-dap",
-				config = function()
-					local cmp = require("cmp")
-					cmp.setup({
-						enabled = function()
-							return vim.api.nvim_get_option_value("buftype", { buf = 0 }) ~= "prompt"
-								or require("cmp_dap").is_dap_buffer()
-						end,
-					})
-					cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-						sources = {
-							{ name = "dap" },
-						},
-					})
-				end,
-			},
 			-- -- to enable popupmenu-completion for copilot
 			-- { "zbirenbaum/copilot-cmp", opts = {} },
 		},
