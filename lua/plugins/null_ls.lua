@@ -8,12 +8,6 @@ return {
 		-- Always use stylua for lua
 		table.insert(sources, null_ls.builtins.formatting.stylua)
 
-		-- Only enable for Python when vim.g.pylsp is true
-		if vim.g.pylsp then
-			table.insert(sources, null_ls.builtins.formatting.black.with({ filetypes = { "python" } }))
-			table.insert(sources, null_ls.builtins.formatting.isort.with({ filetypes = { "python" } }))
-			table.insert(sources, null_ls.builtins.diagnostics.mypy.with({ filetypes = { "python" } }))
-		end
 
 		-- Always register go formatters, but restrict to go files
 		table.insert(sources, null_ls.builtins.formatting.gofumpt.with({ filetypes = { "go" } }))

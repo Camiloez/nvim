@@ -217,8 +217,6 @@ return {
 					"^dist/",
 					"^coverage/",
 					"%.pyc$",
-          "%.bin$",
-          "/bin/",
           "^tmp/",
           "/tmp/"
 				},
