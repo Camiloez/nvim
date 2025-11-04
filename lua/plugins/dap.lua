@@ -61,7 +61,7 @@ return {
 		ft = { "python" },
 		dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
 		keys = { { "<leader>dt", desc = "Run test in debug" } },
-config = function()
+		config = function()
 			local function get_python_path()
 				-- 1. Check VIRTUAL_ENV
 				if vim.env.VIRTUAL_ENV then
@@ -124,6 +124,42 @@ config = function()
 			vim.keymap.set("n", "<leader>dt", function()
 				require("dap-go").debug_test()
 			end, { desc = "Run go test" })
+		end,
+	},
+	{
+		"mxsdev/nvim-dap-vscode-js",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			{
+				"microsoft/vscode-js-debug",
+				version = "1.*",
+				build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
+			},
+		},
+		config = function()
+			require("dap-vscode-js").setup({
+				node_path = "node",
+				adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+			})
+
+			for _, language in ipairs({ "typescript", "javascript" }) do
+				require("dap").configurations[language] = {
+					{
+						type = "pwa-node",
+						request = "launch",
+						name = "Launch file",
+						program = "${file}",
+						cwd = "${workspaceFolder}",
+					},
+					{
+						type = "pwa-node",
+						request = "attach",
+						name = "Attach to process",
+						processId = require("dap.utils").pick_process,
+						cwd = "${workspaceFolder}",
+					},
+				}
+			end
 		end,
 	},
 }

@@ -20,6 +20,7 @@ return {
       "tailwindcss-language-server",
       "typescript-language-server",
       "shfmt",
+      "js-debug-adapter",
       "luacheck"
     },
     ui = {

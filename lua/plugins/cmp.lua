@@ -140,21 +140,28 @@ return {
 				["<C-e>"] = cmp.mapping.close(),
 				["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = false }),
 				["<Tab>"] = cmp.mapping(function(fallback)
+					local cmp = require("cmp")
 					local luasnip = require("luasnip")
-					if luasnip.expand_or_jumpable() then
-						luasnip.expand_or_jump()
-					elseif cmp.visible() then
+
+					if cmp.visible() then
+						-- Just select next suggestion (don't confirm)
 						cmp.select_next_item()
+					elseif luasnip.expand_or_jumpable() then
+						luasnip.expand_or_jump()
 					else
 						fallback()
 					end
 				end, { "i", "s" }),
+
 				["<S-Tab>"] = cmp.mapping(function(fallback)
+					local cmp = require("cmp")
 					local luasnip = require("luasnip")
-					if luasnip.jumpable(-1) then
-						luasnip.jump(-1)
-					elseif cmp.visible() then
+
+					if cmp.visible() then
+						-- Select previous suggestion
 						cmp.select_prev_item()
+					elseif luasnip.jumpable(-1) then
+						luasnip.jump(-1)
 					else
 						fallback()
 					end

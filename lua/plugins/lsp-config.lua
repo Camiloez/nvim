@@ -12,6 +12,7 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"pyright",
+					"ruff",
 				},
 			})
 		end,
@@ -28,15 +29,15 @@ return {
 				cmd = { "gopls" },
 				filetypes = { "go", "gomod", "gowork", "gotmpl" },
 				root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-        settings = {
-          gopls = {
-            completeUnimported = true,
-            usePlaceholders = true,
-            analyses = {
-              unusedparams = true, 
-            }
-          }
-        }
+				settings = {
+					gopls = {
+						completeUnimported = true,
+						usePlaceholders = true,
+						analyses = {
+							unusedparams = true,
+						},
+					},
+				},
 			})
 
 			vim.diagnostic.config({
@@ -61,7 +62,18 @@ return {
 
 			lspconfig.pyright.setup({
 				capabilities = capabilities,
-				filetype = { "python" },
+				filetypes = { "python" },
+			})
+
+			-- ✅ Ruff LSP (for linting + formatting)
+			lspconfig.ruff.setup({
+				cmd = { "/Users/camilo/.pyenv/shims/ruff", "server" },
+				capabilities = capabilities,
+				init_options = {
+					settings = {
+						args = {}, -- you can add "--select" or "--fix" here if needed
+					},
+				},
 			})
 
 			vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, {})
