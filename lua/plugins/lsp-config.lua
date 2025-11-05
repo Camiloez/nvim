@@ -21,10 +21,9 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
 			local util = require("lspconfig/util")
-
-			lspconfig.gopls.setup({
+			-- Go LSP
+			vim.lsp.config("gopls", {
 				capabilities = capabilities,
 				cmd = { "gopls" },
 				filetypes = { "go", "gomod", "gowork", "gotmpl" },
@@ -39,7 +38,53 @@ return {
 					},
 				},
 			})
+			vim.lsp.enable({ "gopls" })
 
+			-- Lua LSP
+			vim.lsp.config("lua_ls", {
+				capabilities = capabilities,
+				filetypes = { "lua" },
+			})
+			vim.lsp.enable({ "lua_ls" })
+
+			-- TypeScript LSP
+			vim.lsp.config("ts_ls", {
+				capabilities = capabilities,
+			})
+			vim.lsp.enable({ "ts_ls" })
+
+			-- HTML LSP
+			vim.lsp.config("html", {
+				capabilities = capabilities,
+			})
+			vim.lsp.enable({ "html" })
+
+			-- Pyright (Python LSP)
+			vim.lsp.config("pyright", {
+				before_init = function(_, config)
+					local venv = os.getenv("VIRTUAL_ENV")
+					if venv then
+						config.settings.python.pythonPath = venv .. "/bin/python"
+					else
+						config.settings.python.pythonPath = "/usr/bin/python3"
+					end
+				end,
+			})
+			vim.lsp.enable({ "pyright" })
+
+			-- Ruff LSP
+			vim.lsp.config("ruff", {
+				cmd = { "/Users/camilo/.pyenv/shims/ruff", "server" },
+				capabilities = capabilities,
+				init_options = {
+					settings = {
+						args = {}, -- add "--select" or "--fix" if desired
+					},
+				},
+			})
+			vim.lsp.enable({ "ruff" })
+
+			-- Diagnostics config
 			vim.diagnostic.config({
 				signs = true,
 				underline = true,
@@ -50,36 +95,6 @@ return {
 					source = "always",
 					border = "rounded",
 					focusable = true,
-				},
-			})
-
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-				filetypes = { "lua" },
-			})
-			lspconfig.ts_ls.setup({ capabilities = capabilities })
-			lspconfig.html.setup({ capabilities = capabilities })
-
-			lspconfig.pyright.setup({
-				before_init = function(_, config)
-					local venv = os.getenv("VIRTUAL_ENV")
-					if venv then
-						config.settings.python.pythonPath = venv .. "/bin/python"
-					else
-						-- fallback to system python
-						config.settings.python.pythonPath = "/usr/bin/python3"
-					end
-				end,
-			})
-
-			-- ✅ Ruff LSP (for linting + formatting)
-			lspconfig.ruff.setup({
-				cmd = { "/Users/camilo/.pyenv/shims/ruff", "server" },
-				capabilities = capabilities,
-				init_options = {
-					settings = {
-						args = {}, -- you can add "--select" or "--fix" here if needed
-					},
 				},
 			})
 
