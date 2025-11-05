@@ -61,8 +61,15 @@ return {
 			lspconfig.html.setup({ capabilities = capabilities })
 
 			lspconfig.pyright.setup({
-				capabilities = capabilities,
-				filetypes = { "python" },
+				before_init = function(_, config)
+					local venv = os.getenv("VIRTUAL_ENV")
+					if venv then
+						config.settings.python.pythonPath = venv .. "/bin/python"
+					else
+						-- fallback to system python
+						config.settings.python.pythonPath = "/usr/bin/python3"
+					end
+				end,
 			})
 
 			-- ✅ Ruff LSP (for linting + formatting)
