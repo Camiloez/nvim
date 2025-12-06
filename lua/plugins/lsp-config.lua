@@ -13,6 +13,7 @@ return {
 					"lua_ls",
 					"pyright",
 					"ruff",
+					"svelte",
 				},
 			})
 		end,
@@ -83,6 +84,13 @@ return {
 				},
 			})
 			vim.lsp.enable({ "ruff" })
+
+			-- Svelte LSP
+			vim.lsp.config("svelte", {
+				capabilities = capabilities,
+				filetypes = { "svelte" },
+			})
+			vim.lsp.enable({ "svelte" })
 
 			-- Diagnostics config
 			vim.diagnostic.config({

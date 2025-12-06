@@ -19,6 +19,7 @@ return {
       "rust",
       "scala",
       "sql",
+      "svelte",
       "terraform",
       "tsx",
       "typescript",
