@@ -14,6 +14,7 @@ return {
 					"pyright",
 					"ruff",
 					"svelte",
+					"gopls",
 				},
 			})
 		end,
@@ -22,13 +23,13 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local util = require("lspconfig/util")
+
 			-- Go LSP
 			vim.lsp.config("gopls", {
 				capabilities = capabilities,
 				cmd = { "gopls" },
 				filetypes = { "go", "gomod", "gowork", "gotmpl" },
-				root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+				root_markers = { "go.work", "go.mod", ".git" },
 				settings = {
 					gopls = {
 						completeUnimported = true,
@@ -36,61 +37,78 @@ return {
 						analyses = {
 							unusedparams = true,
 						},
+						gofumpt = true,
 					},
 				},
 			})
-			vim.lsp.enable({ "gopls" })
 
 			-- Lua LSP
 			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
+				cmd = { "lua-language-server" },
 				filetypes = { "lua" },
+				root_markers = { ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", "selene.yml", ".git" },
 			})
-			vim.lsp.enable({ "lua_ls" })
 
 			-- TypeScript LSP
 			vim.lsp.config("ts_ls", {
 				capabilities = capabilities,
+				cmd = { "typescript-language-server", "--stdio" },
+				filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+				root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
 			})
-			vim.lsp.enable({ "ts_ls" })
 
 			-- HTML LSP
 			vim.lsp.config("html", {
 				capabilities = capabilities,
+				cmd = { "vscode-html-language-server", "--stdio" },
+				filetypes = { "html", "templ" },
+				root_markers = { "package.json", ".git" },
 			})
-			vim.lsp.enable({ "html" })
 
 			-- Pyright (Python LSP)
 			vim.lsp.config("pyright", {
+				capabilities = capabilities,
+				cmd = { "pyright-langserver", "--stdio" },
+				filetypes = { "python" },
+				root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", "pyrightconfig.json", ".git" },
 				before_init = function(_, config)
 					local venv = os.getenv("VIRTUAL_ENV")
 					if venv then
+						config.settings = config.settings or {}
+						config.settings.python = config.settings.python or {}
 						config.settings.python.pythonPath = venv .. "/bin/python"
 					else
+						config.settings = config.settings or {}
+						config.settings.python = config.settings.python or {}
 						config.settings.python.pythonPath = "/usr/bin/python3"
 					end
 				end,
 			})
-			vim.lsp.enable({ "pyright" })
 
 			-- Ruff LSP
 			vim.lsp.config("ruff", {
 				cmd = { "/Users/camilo/.pyenv/shims/ruff", "server" },
 				capabilities = capabilities,
+				filetypes = { "python" },
+				root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
 				init_options = {
 					settings = {
-						args = {}, -- add "--select" or "--fix" if desired
+						args = {},
 					},
 				},
 			})
-			vim.lsp.enable({ "ruff" })
 
 			-- Svelte LSP
 			vim.lsp.config("svelte", {
 				capabilities = capabilities,
+				cmd = { "svelteserver", "--stdio" },
 				filetypes = { "svelte" },
+				root_markers = { "package.json", ".git" },
 			})
-			vim.lsp.enable({ "svelte" })
+
+			-- Enable all LSP servers
+			vim.lsp.enable({ "gopls", "lua_ls", "ts_ls", "html", "pyright", "ruff", "svelte" })
 
 			-- Diagnostics config
 			vim.diagnostic.config({
